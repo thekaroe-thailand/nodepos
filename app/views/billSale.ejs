@@ -1,0 +1,58 @@
+<style>
+    @page {
+        size: 80mm;
+        margin: 0mm 0mm 0mm 0mm;
+    }
+</style>
+
+<script>
+    window.print();
+</script>
+
+<div style="text-align: center">
+    <h4>ใบเสร็จรับเงิน NO.
+        <%= billSale.id %>
+    </h4>
+    <div>วันที่:
+        <%= dayjs(billSale.bill_date).format('DD/MM/YYYY HH:mm') %>
+    </div>
+</div>
+
+<div>&nbsp;</div>
+
+<% billSaleDetails.forEach(item => { %>
+    <table width="100%">
+        <tr>
+            <td>
+                <%= item.name %>
+            </td>
+            <td width="100px" style="text-align: right">
+                <span><%= item.qty %> x</span>
+                <span><%= item.price %> =</span>
+                <span><%= item.qty * item.price %></span>
+            </td>
+        </tr>
+    </table>
+    <% }); %>
+
+        <div>&nbsp;</div>
+        <table width="100%">
+            <tr>
+                <td>ยอดเงินทั้งหมด</td>
+                <td style="text-align:right">
+                    <%= inputPrice - returnPrice %>
+                </td>
+            </tr>
+            <tr>
+                <td>รับเงิน</td>
+                <td style="text-align: right">
+                    <%= inputPrice %>
+                </td>
+            </tr>
+            <tr>
+                <td>เงินทอน</td>
+                <td style="text-align: right">
+                    <%= returnPrice %>
+                </td>
+            </tr>
+        </table>

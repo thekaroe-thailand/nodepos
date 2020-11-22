@@ -1,0 +1,21 @@
+<%- include("header") %>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-pencil"></i> แก้ไขรายการที่ขาย
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label>จำนวน</label>
+                        <input class="form-control" name="qty" value="<%= billSaleDetail.qty %>" />
+                    </div>
+
+                    <button class="btn btn-danger">
+                      <i class="fa fa-check"></i> Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include( "footer") %>

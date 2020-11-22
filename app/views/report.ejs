@@ -1,0 +1,59 @@
+<%- include("header") %>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-bar-chart"></i> รายงานยอดขาย
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="80px">เลขบิล</th>
+                            <th width="150px">วันที่ขาย</th>
+                            <th>barcode</th>
+                            <th>รายการ</th>
+                            <th width="90px" class="text-right">จำนวน</th>
+                            <th width="90px" class="text-right">ราคาทุน</th>
+                            <th width="130px" class="text-right">ราคาจำหน่าย</th>
+                            <th width="130px" class="text-right">กำไรต่อหน่วย</th>
+                            <th width="120px" class="text-right">กำไรสุทธิ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% billSaleDetails.forEach(item => { %>
+                            <tr>
+                                <td>
+                                    <%= item.bill_sale_id %>
+                                </td>
+                                <td>
+                                    <%= dayjs(item.bill_date).format('DD/MM/YYYY HH:mm') %>
+                                </td>
+                                <td>
+                                    <%= item.barcode %>
+                                </td>
+                                <td>
+                                    <%= item.name %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.qty %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.cost %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.price %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.price - item.cost %>
+                                </td>
+                                <td class="text-right">
+                                    <%= (item.price - item.cost) * item.qty %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include("footer") %>

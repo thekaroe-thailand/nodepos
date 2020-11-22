@@ -1,0 +1,32 @@
+<%- include("header") %>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-th"></i> สินค้า
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label>Barcode</label>
+                        <input name="barcode" value="<%= data.barcode %>" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>ชื่อสินค้า</label>
+                        <input name="name" value="<%= data.name %>" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>ราคาทุน</label>
+                        <input name="cost" value="<%= data.cost %>" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>ราคาจำหน่าย</label>
+                        <input name="price" value="<%= data.price %>" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-danger">
+                      <i class="fa fa-check"></i> Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include("footer") %>

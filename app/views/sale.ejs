@@ -1,0 +1,88 @@
+<%- include("header") %>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-usd"></i> ขายสินค้า
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Barcode</label>
+                                <div class="input-group">
+                                    <input name="barcode" class="form-control" onblur="document.forms[0].submit()" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><%= product.name %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="float-right">
+                    <div class="input-group">
+                        <input value="<%= totalPrice %>" disabled class="form-control text-right bg-dark text-white" />
+                        <a class="btn btn-success" href="/saleEnd">
+                            <i class="fa fa-check"></i> จบการขาย
+                        </a>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped mt-5">
+                    <thead>
+                        <tr>
+                            <th width="110px"></th>
+                            <th width="120px">barcode</th>
+                            <th>รายการ</th>
+                            <th width="100px" class="text-right">ราคา</th>
+                            <th width="100px" class="text-right">จำนวน</th>
+                            <th width="100px" class="text-right">ยอดรวม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% billSaleDetails.forEach(item => { %>
+                            <tr>
+                                <td class="text-center">
+                                    <a class="btn btn-primary" href="/saleEditItem/<%= item.id %>">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger" onclick="return confirm('Delete ?')" href="/saleDeleteItem/<%= item.id %>">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= item.barcode %>
+                                </td>
+                                <td>
+                                    <%= item.name %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.price %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.qty %>
+                                </td>
+                                <td class="text-right">
+                                    <%= item.price * item.qty %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">รวม</td>
+                            <td class="text-right">
+                                <%= totalQty %>
+                            </td>
+                            <td class="text-right">
+                                <%= totalPrice %>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include("footer") %>
